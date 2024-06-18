@@ -616,7 +616,7 @@ if (userDataForm) userDataForm.addEventListener("submit", (e)=>{
     form.append("name", document.getElementById("name").value);
     form.append("email", document.getElementById("email").value);
     form.append("photo", document.getElementById("photo").files[0]);
-    console.log(form);
+    // console.log(form);
     (0, _updateSettings.updateSettings)(form, "data");
 });
 if (userPasswordForm) userPasswordForm.addEventListener("submit", async (e)=>{
@@ -7699,7 +7699,7 @@ const login = async (email, password)=>{
     try {
         const res = await (0, _axiosDefault.default)({
             method: "POST",
-            url: "http://127.0.0.1:3000/api/v1/users/login",
+            url: "/api/v1/users/login",
             data: {
                 email,
                 password
@@ -7719,7 +7719,7 @@ const logout = async ()=>{
     try {
         const res = await (0, _axiosDefault.default)({
             method: "GET",
-            url: "http://127.0.0.1:3000/api/v1/users/logout"
+            url: "/api/v1/users/logout"
         });
         res.data.status = "success";
         location.reload(true);
@@ -12454,7 +12454,8 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _alerts = require("./alerts");
 const updateSettings = async (data, type)=>{
     try {
-        const url = type === "password" ? "http://127.0.0.1:3000/api/v1/users/updateMyPassword" : "http://127.0.0.1:3000/api/v1/users/updateMe";
+        const url = type === "password" ? "/api/v1/users/updateMyPassword" //'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
+         : "/api/v1/users/updateMe"; // 'http://127.0.0.1:3000/api/v1/users/updateMe'
         const res = await (0, _axiosDefault.default)({
             method: "PATCH",
             url,
@@ -12477,8 +12478,8 @@ const stripe = Stripe("pk_test_51PRbxM029wLKaFvhUu3EgCb8RprBcbNzdAWRFIJo6pCFatE1
 const bookTour = async (tourId)=>{
     try {
         // 1) Get checkout session from API
-        const session = await (0, _axiosDefault.default)(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
-        console.log(session);
+        const session = await (0, _axiosDefault.default)(`S/api/v1/bookings/checkout-session/${tourId}`);
+        // console.log(session);
         // 2) Create checkout form + charge credit card
         await stripe.redirectToCheckout({
             sessionId: session.data.session.id
