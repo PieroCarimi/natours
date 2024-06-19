@@ -4,9 +4,7 @@ const dotenv = require('dotenv');
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION! Shutting down...');
   console.log(err.name, err.message);
-  //server.close(() => {
   process.exit(1);
-  //});
 });
 
 dotenv.config({ path: './config.env' });
@@ -20,7 +18,6 @@ const DB = process.env.DATABASE.replace(
 );
 
 mongoose
-  //.connect(process.env.DATABASE_LOCAL, {
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -31,20 +28,6 @@ mongoose
     //console.log(con.connections);
     console.log('DB connection successful!');
   });
-
-/*const testTour = new Tour({
-  name: 'Ciao',
-  price: 997,
-});
-
-testTour
-  .save()
-  .then((doc) => {
-    console.log(doc);
-  })
-  .catch((err) => {
-    console.log('ERROR:', err);
-  });*/
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {

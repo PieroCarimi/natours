@@ -120,11 +120,6 @@ app.use(
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
 
-// app.use((req, res, next) => {
-//   console.log('Hello from the middleware');
-//   next();
-// });
-
 app.use(compression());
 
 // Test middleware
@@ -134,16 +129,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-// app.get('/', (req, res) => {
-//   res
-//     .status(200)
-//     .json({ message: 'Hello from the server side!', app: 'Natours' });
-// });
-
-// app.post('/', (req, res) => {
-//   res.send('You can post to this endpoint...');
-// });
 
 // 2) ROUTE HANDLERS
 
@@ -163,17 +148,6 @@ app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (req, res, next) => {
-  // res.status(404).json({
-  //   status: 'fail',
-  //   message: `Can't find ${req.originalUrl} on this server`,
-  // });
-
-  // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  // err.status = 'fail';
-  // err.statusCode = 404;
-
-  //next(err);
-
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 

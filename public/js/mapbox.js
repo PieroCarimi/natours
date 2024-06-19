@@ -1,7 +1,6 @@
 /* eslint-disable */
 export const displayMap = (locations) => {
   const map = L.map('map', { zoomControl: false }); //to disable + - zoom
-  // var map = L.map('map', { zoomControl: false }).setView([31.111745, -118.113491], );
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
