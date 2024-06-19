@@ -7634,7 +7634,6 @@ const displayMap = (locations)=>{
     const map = L.map("map", {
         zoomControl: false
     }); //to disable + - zoom
-    // var map = L.map('map', { zoomControl: false }).setView([31.111745, -118.113491], );
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         crossOrigin: ""
@@ -12454,8 +12453,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _alerts = require("./alerts");
 const updateSettings = async (data, type)=>{
     try {
-        const url = type === "password" ? "/api/v1/users/updateMyPassword" //'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
-         : "/api/v1/users/updateMe"; // 'http://127.0.0.1:3000/api/v1/users/updateMe'
+        const url = type === "password" ? "/api/v1/users/updateMyPassword" : "/api/v1/users/updateMe";
         const res = await (0, _axiosDefault.default)({
             method: "PATCH",
             url,
